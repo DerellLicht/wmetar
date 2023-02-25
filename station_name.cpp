@@ -69,7 +69,7 @@ station_data_p lookup_station_name(char *icao)
    if (strlen(stations_file) == 0) {
       derive_file_path(stations_file, "stations.txt") ;
       // exec_fname=C:\SourceCode\win32\metar\metar.exe
-      syslog("found %s\n", stations_file) ;
+      // syslog("found %s\n", stations_file) ;
    }
    // char stations_file[PATH_MAX] = "stations.txt" ; //  later, use source path as reference
    FILE *fd = fopen(stations_file, "rt") ;
