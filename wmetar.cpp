@@ -356,7 +356,8 @@ static bool do_command(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LP
 static void resize_main_dialog(bool resize_on_drag)
 {
    RECT myRect ;
-   int dx_offset = 5, dy_offset = 0;
+   int dx_offset = 0; //5;
+   int dy_offset = 5;
    // syslog("resize terminal, drag=%s\n", (resize_on_drag) ? "true" : "false") ;
 
    uint new_window_height ;
@@ -443,6 +444,9 @@ static bool do_sizing(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPV
 //  Perhaps this is due to Windowblinds ??
 //  Yes; this works fine on standard Windows 7
 //*******************************************************************
+// #define  MAX_TWWID   11
+#define  MAX_TWWID   11
+
 static bool do_getminmaxinfo(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPVOID private_data)
 {
    switch (message) {
@@ -451,11 +455,11 @@ static bool do_getminmaxinfo(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPar
       LPMINMAXINFO lpTemp = (LPMINMAXINFO) lParam;
       POINT        ptTemp;
       //  set minimum dimensions
-      ptTemp.x = term_window_width + 11;  //  empirical value
+      ptTemp.x = term_window_width + MAX_TWWID;  //  empirical value
       ptTemp.y = term_window_height ;     //  empirical value
       lpTemp->ptMinTrackSize = ptTemp;
       //  set maximum dimensions
-      ptTemp.x = term_window_width + 11;
+      ptTemp.x = term_window_width + MAX_TWWID;
       ptTemp.y = get_screen_height() ;
       lpTemp->ptMaxTrackSize = ptTemp;
       // syslog("max height: %u [%u]\n", ptTemp.y, term_window_height);
