@@ -4,9 +4,9 @@
 //  
 //  Written by:   Daniel D. Miller
 //**********************************************************************
-//  version		changes
-//	 =======		======================================
-// 	1.00		Initial release
+//  version    changes
+//  =======    ======================================
+//    1.00     Initial release
 //****************************************************************************
 
 static char const * const VerNum = "V1.00" ;
@@ -55,6 +55,12 @@ static uint cxClient = 0;
 static uint cyClient = 0;   //  subtrace height of status bar
 
 int use_fahrenheit = IDC_TEMP_DEGSC ;
+
+#define  TERM_MIN_DX    860  
+#define  TERM_MIN_DY    1024  
+
+static uint term_window_width  = TERM_MIN_DX ;
+static uint term_window_height = TERM_MIN_DY ;
 
 //****************************************************************************
 //  debug: message-reporting data
@@ -220,6 +226,18 @@ static void decode_metar_string(void)
    process_metar_string(tptr) ;
 }
 
+//****************************************************************************
+static uint get_terminal_top(HWND hwnd)
+{
+   static uint local_ctrl_top = 0 ;
+   if (local_ctrl_top == 0) {
+      local_ctrl_top = get_bottom_line(hwnd, IDC_TEMP_BOX) ;
+      local_ctrl_top += 3 ;
+      // syslog("CommPort: ctrl_top = %u, or %u\n", local_ctrl_top, win_ctrl_top+3) ;
+   }
+   return local_ctrl_top ;
+}  //lint !e715
+
 //*******************************************************************
 static bool do_init_dialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPVOID private_data)
 {
@@ -238,6 +256,8 @@ static bool do_init_dialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam
    GetClientRect(hwnd, &myRect) ;
    cxClient = (uint) (myRect.right - myRect.left) ;
    cyClient = (uint) (myRect.bottom - myRect.top) ;
+   term_window_width  = cxClient ;
+   term_window_height = cyClient ;
 
    //**********************************************************
    //  do other config tasks *after* creating fields,
@@ -316,6 +336,128 @@ static bool do_command(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LP
    } 
    return false ;
 }
+
+//********************************************************************************************
+//  okay, this function originally gave inaccurate results,
+//  because the rectangle passed by WM_SIZING was from GetWindowRect(),
+//  which included the unwanted border area, rather than from
+//  GetClientRect(), which works with get_bottom_line().
+//********************************************************************************************
+//  04/26/13 
+//  WM_SIZING is generated every pixel or two of movement; we *wont* want to be resizing
+//  the entire dialog that frequently!!  We need to somehow slow this down a bit...
+//********************************************************************************************
+// #define  TERM_INIT_XOFFSET  1
+// #define  TERM_INIT_YOFFSET  1
+
+static void resize_main_dialog(bool resize_on_drag)
+{
+   RECT myRect ;
+   int dx_offset = 5, dy_offset = 0;
+   // syslog("resize terminal, drag=%s\n", (resize_on_drag) ? "true" : "false") ;
+
+   uint new_window_height ;
+   if (resize_on_drag) {
+      //  if resizing on drag-and-drop, re-read main-dialog size
+      GetClientRect(hwndMainDialog, &myRect) ;
+      // new_window_width  = (uint) (myRect.right - myRect.left) ;
+      new_window_height = (uint) (myRect.bottom - myRect.top) ;
+
+      if (term_window_height == new_window_height)
+          return ;
+
+      // dx_offset = 6 ;
+      // dy_offset = 5 ;
+      // CPortTabControl->resize_window(new_window_width-dx_offset, new_window_height-dy_offset) ;
+      // term_window_width  = new_window_width  ;
+      term_window_height = new_window_height ;
+
+      // change_terminal_pixels(term_window_width, term_window_height) ;
+      // dx_offset =  3 ;
+      dy_offset =  4 ;
+   } 
+   // else {
+   //    resize_window(hwndTerminal, term_window_width, term_window_height) ;
+   //    dx_offset = TERM_INIT_XOFFSET ;
+   //    dy_offset = TERM_INIT_YOFFSET ;
+   //    // if (are_large_fonts_active(hwndTerminal)) {
+   //    if (!are_normal_fonts_active()) {
+   //       dx_offset -= 5 ;
+   //       dy_offset -= 6 ;
+   //    }
+   // }
+
+   MainStatusBar->MoveToBottom(term_window_width, term_window_height-1) ;
+   //  resize the terminal (cols)
+   int dxi = term_window_width  - dx_offset ;   //lint !e737
+   int dyi = term_window_height - dy_offset - get_terminal_top(hwndMainDialog) - MainStatusBar->height() ;   //lint !e737
+   // VListView->resize_terminal_pixels(dxi, dyi) ;
+   myTerminal->resize(dxi, dyi); //  dialog is actually drawn a few pixels too small for text
+   // set_terminal_dimens() ;  //  do this *after* resize()
+//   VListView->resize_column(dxi-25) ; //  make this narrower than new_dx, to allow for scroll bar
+   // set_terminal_sizing(true);
+   // if (resize_on_drag) {
+   //    save_cfg_file() ;
+   // }
+}
+
+//*******************************************************************
+static bool do_sizing(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPVOID private_data)
+{
+   //  handle main-dialog resizing
+   switch (message) {
+   case WM_SIZING:
+      switch (wParam) {
+      case WMSZ_BOTTOMLEFT:
+      case WMSZ_BOTTOMRIGHT:
+      case WMSZ_TOPLEFT:
+      case WMSZ_TOPRIGHT:
+      case WMSZ_LEFT:
+      case WMSZ_RIGHT:
+      case WMSZ_TOP:
+      case WMSZ_BOTTOM:
+         resize_main_dialog(true);
+         return true;
+
+      default:
+         break;
+      }
+      break;
+   }  //lint !e744
+   return false ;
+}
+
+//*******************************************************************
+//  DDM 01/29/17 - These minima are not actually working;
+//  Perhaps this is due to Windowblinds ??
+//  Yes; this works fine on standard Windows 7
+//*******************************************************************
+static bool do_getminmaxinfo(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPVOID private_data)
+{
+   switch (message) {
+   case WM_GETMINMAXINFO:
+      {
+      LPMINMAXINFO lpTemp = (LPMINMAXINFO) lParam;
+      POINT        ptTemp;
+      // syslog("set minimum to %ux%u\n", cxClient, cyClient);
+      //  set minimum dimensions
+      ptTemp.x = term_window_width + 11;  //  empirical value
+      ptTemp.y = term_window_height ;     //  empirical value
+      lpTemp->ptMinTrackSize = ptTemp;
+      //  set maximum dimensions
+      ptTemp.x = term_window_width + 11;
+      ptTemp.y = get_screen_height() ;
+      lpTemp->ptMaxTrackSize = ptTemp;
+      // lpTemp->ptMaxSize = ptTemp;
+      }         
+      return false ;
+
+   default:
+      break;
+   }
+   return true ;
+}
+
 
 //*******************************************************************
 // static bool do_comm_task_done(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPVOID private_data)
@@ -399,6 +541,8 @@ static winproc_table_t const winproc_table[] = {
 { WM_INITDIALOG,     do_init_dialog },
 { WM_COMMAND,        do_command },
 // { WM_COMM_TASK_DONE, do_comm_task_done },
+{ WM_SIZING,         do_sizing },
+{ WM_GETMINMAXINFO,  do_getminmaxinfo },
 { WM_NOTIFY,         do_notify },
 { WM_CLOSE,          do_close },
 { WM_DESTROY,        do_destroy },
