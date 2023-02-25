@@ -20,12 +20,14 @@
 IDI_APPICON   ICON      "earth.ico"
 
 // IDC_LEDBMPS   BITMAP    "leds.tiny.bmp"
-#define	 MAIN_DX	500
+#define   MAIN_DX 500
 
-#define	 RBOX_DX	72
+#define   RBOX_DX 72
 
 IDD_MAIN_DIALOG DIALOGEX 200, 100, MAIN_DX, 300
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+
+STYLE DS_MODALFRAME | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX
+// STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "WMetar"
 FONT 10, "Times New Roman"
@@ -34,10 +36,10 @@ BEGIN
    //  Note: SS_NOTIFY allows a static control to generate tooltip messages
    LTEXT          "METAR string:",          IDC_STATIC,        5,  5,         50, 10,SS_NOTIFY
    EDITTEXT                                 IDC_INPUT,         5, 20, MAIN_DX-10, 10
-   DEFPUSHBUTTON  "Decode", 	            IDB_DECODE,        5, 35,         50, 14
+   DEFPUSHBUTTON  "Decode",               IDB_DECODE,        5, 35,         50, 14
    PUSHBUTTON     "Read METAR from Buffer", IDB_LOAD_BUF,     60, 35,        100, 14
-   PUSHBUTTON     "Clear Buffer",     	    IDB_CLEAR_BUF,   165, 35,         50, 14
-   // PUSHBUTTON     "Save to File",     	    IDB_SAVE_FILE,   220, 35,         50, 14
+   PUSHBUTTON     "Clear Buffer",          IDB_CLEAR_BUF,   165, 35,         50, 14
+   // PUSHBUTTON     "Save to File",          IDB_SAVE_FILE,   220, 35,         50, 14
 
    GROUPBOX        " Temperature Units ",IDC_TEMP_BOX, MAIN_DX-RBOX_DX-10, 35, RBOX_DX, 35
    RADIOBUTTON     "Degs C", IDC_TEMP_DEGSC,  MAIN_DX-RBOX_DX-10+4, 45, 40, 10,WS_GROUP

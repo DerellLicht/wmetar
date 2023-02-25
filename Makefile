@@ -56,7 +56,7 @@ lint:
 #*******************************************************************
 $(BIN): $(OBJS)
 	g++ $(CFLAGS) $(LFLAGS) $(OBJS) -o $(BIN) $(LIBS)
-	\\InnoSetup5\iscc /Q wmetar.iss
+#	\\InnoSetup5\iscc /Q wmetar.iss
 
 rc.o: wmetar.rc
 	windres $(RFLAGS) -O COFF $< -o $@

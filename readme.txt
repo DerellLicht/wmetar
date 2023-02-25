@@ -2,10 +2,6 @@ METAR Decoder utility for Windows
 dan7miller@comcast.net
 Last update: 08/19/13
 
-The original source code for this project was obtained from:
-http://mdsplib.sourceforge.net/
-on August 14, 2013.
-
 My modified package has the same licensing rules as the original package, 
 which is listed thus:
 
@@ -15,6 +11,17 @@ which is listed thus:
    changes to this software to better meet your needs, and you can release 
    your changed code back to the community passing the benefit on to other 
    users. 
+
+The original source code for this project was obtained from:
+https://sourceforge.net/projects/mdsplib/
+on August 14, 2013.
+
+###  TRUTH IN ADVERTISING MESSAGE  ###
+Make no mistake, the *heavy lifting* of this program was done by:
+chopperd - http://sourceforge.net/users/chopperd
+who developed the "METAR Decoder Software Package Library"
+that I wrapped the WinAPI interface around.  Much of that library I *still*
+don't actually understand, but it works beautifully!!!  
 
 //************************************************************
 Sample output (via klvk.bat file, included in install directory)
