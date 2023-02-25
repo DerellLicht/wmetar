@@ -47,6 +47,10 @@ depend:
 source:
 	zip -D wmetar.src.zip *
 	zip -r wmetar.src.zip ../der_libs/*
+    
+dist:
+	rm -f wmetar.zip
+	zip wmetar.zip wmetar.exe readme.txt stations.txt metar_samples.txt
 
 lint:
 	cmd /C "c:\lint9\lint-nt +v -width(160,4) -ic:\lint9 -ider_libs mingw.lnt -os(_lint.tmp) lintdefs.cpp $(CSRC)"

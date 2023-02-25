@@ -1,6 +1,6 @@
 METAR Decoder utility for Windows
 dan7miller@comcast.net
-Last update: 08/19/13
+Last update: 02/25/23
 
 My modified package has the same licensing rules as the original package, 
 which is listed thus:

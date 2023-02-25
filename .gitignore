@@ -1,5 +1,6 @@
 *.o
 *.exe
 *.bak
+*.zip
 _lint.tmp
 
