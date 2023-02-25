@@ -450,7 +450,6 @@ static bool do_getminmaxinfo(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPar
       {
       LPMINMAXINFO lpTemp = (LPMINMAXINFO) lParam;
       POINT        ptTemp;
-      // syslog("set minimum to %ux%u\n", cxClient, cyClient);
       //  set minimum dimensions
       ptTemp.x = term_window_width + 11;  //  empirical value
       ptTemp.y = term_window_height ;     //  empirical value
@@ -459,7 +458,7 @@ static bool do_getminmaxinfo(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPar
       ptTemp.x = term_window_width + 11;
       ptTemp.y = get_screen_height() ;
       lpTemp->ptMaxTrackSize = ptTemp;
-      syslog("max height: %u [%u]\n", ptTemp.y, term_window_height);
+      // syslog("max height: %u [%u]\n", ptTemp.y, term_window_height);
       // lpTemp->ptMaxSize = ptTemp;
       }         
       return false ;
