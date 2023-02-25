@@ -10,7 +10,7 @@
 //    1.01     Add ability to resize the dialog
 //****************************************************************************
 
-static char const * const VerNum = "V1.00" ;
+static char const * const VerNum = "V1.01" ;
 static char szClassName[] = "WMetar" ;
 
 #include <windows.h>
