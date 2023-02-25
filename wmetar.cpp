@@ -1,5 +1,5 @@
 //**********************************************************************
-//  Copyright (c) 2009-2015  Daniel D Miller
+//  Copyright (c) 2009-2023  Daniel D Miller
 //  wmetar.exe - A Win32 program for decoding METAR weather messages
 //  
 //  Written by:   Daniel D. Miller
@@ -7,6 +7,7 @@
 //  version    changes
 //  =======    ======================================
 //    1.00     Initial release
+//    1.01     Add ability to resize the dialog
 //****************************************************************************
 
 static char const * const VerNum = "V1.00" ;
@@ -249,6 +250,7 @@ static bool do_init_dialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam
    //  but it doesn't actually work!!
    SetClassLong(hwnd,GCL_HCURSOR,(long) 0);  //  disable class cursor 
 
+   get_monitor_dimens(hwnd);      //  get monitor dimens without needing an HWND 
    hwndMainDialog = hwnd ;
    //  read configuration *before* creating edit fields
    // read_config_file() ;
@@ -287,7 +289,8 @@ static bool do_init_dialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam
    //  create listview class second, needs status-bar height
    //****************************************************************
    {
-   uint ctrl_bottom = get_bottom_line(hwnd, IDC_TEMP_BOX) + 5 ;
+   // uint ctrl_bottom = get_bottom_line(hwnd, IDC_TEMP_BOX) + 5 ;
+   uint ctrl_bottom = get_terminal_top(hwnd);
    uint lvdy = cyClient - ctrl_bottom - MainStatusBar->height() ;
 
    myTerminal = new CTerminal(hwnd, IDC_TERMINAL, g_hinst, 
@@ -392,13 +395,21 @@ static void resize_main_dialog(bool resize_on_drag)
    int dxi = term_window_width  - dx_offset ;   //lint !e737
    int dyi = term_window_height - dy_offset - get_terminal_top(hwndMainDialog) - MainStatusBar->height() ;   //lint !e737
    // VListView->resize_terminal_pixels(dxi, dyi) ;
-   myTerminal->resize(dxi, dyi); //  dialog is actually drawn a few pixels too small for text
+//    myTerminal->resize(dxi, dyi); //  dialog is actually drawn a few pixels too small for text
+   myTerminal->resize_terminal_pixels(dxi, dyi) ;
    // set_terminal_dimens() ;  //  do this *after* resize()
 //   VListView->resize_column(dxi-25) ; //  make this narrower than new_dx, to allow for scroll bar
    // set_terminal_sizing(true);
    // if (resize_on_drag) {
    //    save_cfg_file() ;
    // }
+}
+
+//*******************************************************************
+static bool do_size(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam, LPVOID private_data)
+{
+   resize_main_dialog(true);
+   return true ;
 }
 
 //*******************************************************************
@@ -448,6 +459,7 @@ static bool do_getminmaxinfo(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPar
       ptTemp.x = term_window_width + 11;
       ptTemp.y = get_screen_height() ;
       lpTemp->ptMaxTrackSize = ptTemp;
+      syslog("max height: %u [%u]\n", ptTemp.y, term_window_height);
       // lpTemp->ptMaxSize = ptTemp;
       }         
       return false ;
@@ -541,6 +553,7 @@ static winproc_table_t const winproc_table[] = {
 { WM_INITDIALOG,     do_init_dialog },
 { WM_COMMAND,        do_command },
 // { WM_COMM_TASK_DONE, do_comm_task_done },
+{ WM_SIZE,           do_size },
 { WM_SIZING,         do_sizing },
 { WM_GETMINMAXINFO,  do_getminmaxinfo },
 { WM_NOTIFY,         do_notify },

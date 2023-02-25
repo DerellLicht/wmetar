@@ -1,4 +1,4 @@
-USE_DEBUG = YES
+USE_DEBUG = NO
 
 LIBS=-lgdi32 -lcomctl32 -lcomdlg32
 
@@ -49,7 +49,7 @@ source:
 	zip -r wmetar.src.zip ../der_libs/*
 
 lint:
-   c:\lint9\lint-nt +v -width(160,4) -I..\der_libs -ic:\lint9 mingw.lnt -os(_lint.tmp) @wmetar.lnt 
+	cmd /C "c:\lint9\lint-nt +v -width(160,4) -ic:\lint9 -ider_libs mingw.lnt -os(_lint.tmp) lintdefs.cpp $(CSRC)"
 
 #*******************************************************************
 #  component build rules

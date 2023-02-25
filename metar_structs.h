@@ -17,8 +17,8 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#ifndef METARX
-#define METARX
+// #ifndef METARX
+// #define METARX
  
 /********************************************************************/
 /*                                                                  */
@@ -118,6 +118,7 @@ typedef struct recent_wx {
 /*     AND VARIABLE TYPE DEFINITION    */
 /*                                     */
 /***************************************/
+#define  MAX_CLOUD_TYPE_HEIGHT   6
  
 typedef struct decoded_METAR {
    char synoptic_cloud_type[ 6 ];
@@ -268,11 +269,11 @@ typedef struct decoded_METAR {
    Dispatch_VisRange DVR;
    Recent_Wx ReWx[3];
    WindStruct winData;
-   Cloud_Conditions cldTypHgt[6];
+   Cloud_Conditions cldTypHgt[MAX_CLOUD_TYPE_HEIGHT];
  
 }  Decoded_METAR;
- 
+
 #define MAXWXSYMBOLS    10       /*-- NOT TO EXCEED 10 PRES. WX GRPS --*/
 #define MAXTOKENS       500      /*--  RPT NOT TO EXCEED 500 GRPS   --*/
 
-#endif
+// #endif

@@ -212,7 +212,7 @@ void prtDMETR (Decoded_METAR *Mptr)
    }
  
    i = 0;
-   while ( Mptr->cldTypHgt[ i ].cloud_type[0] != '\0' && i < 6 ) {  //lint !e662
+   while (i < MAX_CLOUD_TYPE_HEIGHT  &&  Mptr->cldTypHgt[ i ].cloud_type[0] != '\0') {  //lint !e662
       if ( Mptr->cldTypHgt[ i ].cloud_type[0] != '\0' ) {
          termoutf("CLOUD COVER         : %s\n", Mptr->cldTypHgt[ i ].cloud_type);
       }

@@ -343,7 +343,7 @@ static void InitDcdMETAR( Decoded_METAR *Mptr )
    /***************************************************/
  
  
-   for ( i = 0; i < 6; i++ )
+   for ( i = 0; i < MAX_CLOUD_TYPE_HEIGHT; i++ )
    {
       memset(Mptr->cldTypHgt[ i ].cloud_type,
               '\0', 5);
@@ -2379,14 +2379,14 @@ int DcdMETAR( char *string , Decoded_METAR *Mptr )
    syslog("DcdMETAR: Returned from InitDcdMETAR\n");
 #endif
 
-	/* Copy the string since it may be const, and functions
-	 * strtok() don't like that.
-	 */
-	
+   /* Copy the string since it may be const, and functions
+    * strtok() don't like that.
+    */
+   
    stringCpy = (char *) calloc(strlen(string) + 1, sizeof(char));
    if (stringCpy == NULL)
       return 8;
-	strcpy(stringCpy, string);
+   strcpy(stringCpy, string);
 
  
    /****************************************************/
@@ -2621,35 +2621,35 @@ prtDMETR( Mptr );
 /********************************************************************/
 int dcdNetMETAR (char *string, Decoded_METAR *Mptr)
 {
-	char *string_cpy, *ptr;
-	int result;
-	
-	/* Strip the date, which is the first line. */
-	while (*string != '\n')
-	{
-		++string;
-	}
-	++string;
-	
-	/* make a copy of the string without the date */
+   char *string_cpy, *ptr;
+   int result;
+   
+   /* Strip the date, which is the first line. */
+   while (*string != '\n')
+   {
+      ++string;
+   }
+   ++string;
+   
+   /* make a copy of the string without the date */
    string_cpy = (char *) calloc(strlen(string)+1, sizeof(char));
    if (string_cpy == NULL)
       return 10;
-	strcpy(string_cpy, string);
-	
-	/* replace all carrage returns with spaces */
-	ptr = string_cpy;
-	while (*ptr != '\0')
-	{
-		if (*ptr == '\n')
-			*ptr = ' ';
-		++ptr;
-	}
-	
-	/* decode the METAR */
-	result = DcdMETAR(string_cpy, Mptr);
-	
-	free(string_cpy);
-	return result;
+   strcpy(string_cpy, string);
+   
+   /* replace all carrage returns with spaces */
+   ptr = string_cpy;
+   while (*ptr != '\0')
+   {
+      if (*ptr == '\n')
+         *ptr = ' ';
+      ++ptr;
+   }
+   
+   /* decode the METAR */
+   result = DcdMETAR(string_cpy, Mptr);
+   
+   free(string_cpy);
+   return result;
 }
 

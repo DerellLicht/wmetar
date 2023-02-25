@@ -1,16 +1,37 @@
-//****************************************************************************
+//***********************************************************************************************
 //  Copyright (c) 2010  Daniel D Miller
 //  winagrams.exe - a Win32 anagrams program
 //
 //  Written/integrated by:  Dan Miller
-//****************************************************************************
+//***********************************************************************************************
 //  Interesting notes about this file:
 //
 //  > SS_NOTIFY and "Static" controls
 //    If SS_NOTIFY is not specified in the control styles,
 //    you cannot attach tooltips to the control.
 //
-//****************************************************************************
+//***********************************************************************************************
+// 04/26/13 12:45  On Win7, WS_DLGFRAME and WS_CAPTION seem to create identical dialogs !
+// > WS_DLGFRAME  Creates a window with a double border but no title.
+// > WS_BORDER    Creates a window that has a border.
+// > WS_CAPTION   Creates a window that has a title bar (implies the WS_BORDER style). 
+//                Cannot be used with the WS_DLGFRAME style.
+// > WS_SYSMENU   Among other things, adds the CLOSE button on title bar
+//                WS_SYSMENU also needed in order to show program icon on title bar
+//***********************************************************************************************
+//  WS_THICKFRAME   Creates a window with a thick frame that can be used to size the window.
+//  04/26/13 - initially, one of these other flags was over-riding WS_THICKFRAME
+//***********************************************************************************************
+// WS_EX_CONTROLPARENT
+// Bottom line is, the WS_EX_CONTROLPARENT style tells function that do control searches 
+// (such as GetNextDlgTabItem) that they should treat the dialog marked with the flag as 
+// a container of other controls (and iterate them) and not a single, big, control.
+// 
+// So if dialog movement via TAB key is not intended, just use WS_EX_APPWINDOW
+// WS_EX_APPWINDOW
+// Forces a top-level window onto the taskbar when the window is visible. 
+//***********************************************************************************************
+
 #include <windows.h>
 
 #include "resource.h"
