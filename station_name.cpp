@@ -51,14 +51,12 @@
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+// #include <limits.h>
 
-#include <common.h>
+#include "common.h"
 #include "wmetar.h"
-
-#define  MAX_LINE_LEN   260
-
-static char stations_file[PATH_MAX+1] = "" ;
+   
+static char stations_file[MAX_PATH_LEN+1] = "" ;
 
 //***************************************************************************************
 station_data_p lookup_station_name(char *icao)
@@ -71,7 +69,7 @@ station_data_p lookup_station_name(char *icao)
       // exec_fname=C:\SourceCode\win32\metar\metar.exe
       // syslog("found %s\n", stations_file) ;
    }
-   // char stations_file[PATH_MAX] = "stations.txt" ; //  later, use source path as reference
+   // char stations_file[MAX_PATH_LEN] = "stations.txt" ; //  later, use source path as reference
    FILE *fd = fopen(stations_file, "rt") ;
    if (fd == NULL) {
       syslog("%s: %s\n", stations_file, get_system_message()) ;

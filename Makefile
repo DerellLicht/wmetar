@@ -1,6 +1,6 @@
 USE_DEBUG = NO
 
-LIBS=-lgdi32 -lcomctl32 -lcomdlg32
+TOOLS=d:\tdm32\bin
 
 ifeq ($(USE_DEBUG),YES)
 CFLAGS=-Wall -ggdb -O
@@ -9,12 +9,16 @@ else
 CFLAGS=-Wall -O3
 LFLAGS=-mwindows -s
 endif
-CFLAGS += -Wno-write-strings
 CFLAGS += -Weffc++
+CFLAGS += -Wno-write-strings
+CFLAGS += -Wno-stringop-truncation
+CFLAGS += -Wno-stringop-overflow
+
+LiFLAGS += -Ider_libs
+CFLAGS += -Ider_libs
+IFLAGS += -Ider_libs
 
 # link library files
-CFLAGS += -I../der_libs
-LiFLAGS += -I../der_libs
 CSRC=der_libs/common_funcs.cpp \
 der_libs/common_win.cpp \
 der_libs/statbar.cpp \
@@ -28,10 +32,13 @@ CSRC+=wmetar.cpp dcdmetar.cpp antoi.cpp charcmp.cpp dcdmtrmk.cpp fracpart.cpp \
 prtdmetr.cpp stspack2.cpp stspack3.cpp station_name.cpp sendbfr.cpp
 
 OBJS = $(CSRC:.cpp=.o) rc.o
+
 BIN=wmetar.exe
 
+LIBS=-lgdi32 -lcomctl32 -lcomdlg32
+
 %.o: %.cpp
-	g++ $(CFLAGS) -c $< -o $@
+	$(TOOLS)\g++ $(CFLAGS) -c $< -o $@
 
 #*******************************************************************
 #  top-level build rules
@@ -59,7 +66,7 @@ lint:
 #  component build rules
 #*******************************************************************
 $(BIN): $(OBJS)
-	g++ $(CFLAGS) $(LFLAGS) $(OBJS) -o $(BIN) $(LIBS)
+	g++ $(LFLAGS) $(OBJS) -o $(BIN) $(LIBS)
 #	\\InnoSetup5\iscc /Q wmetar.iss
 
 rc.o: wmetar.rc
