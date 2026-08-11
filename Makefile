@@ -1,6 +1,6 @@
 USE_DEBUG = NO
 
-TOOLS=d:\tdm32\bin
+include ..\tool_select.mak 
 
 ifeq ($(USE_DEBUG),YES)
 CFLAGS=-Wall -ggdb -O
