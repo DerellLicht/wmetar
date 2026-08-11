@@ -1,6 +1,6 @@
 USE_DEBUG = NO
 
-include ..\tool_select.mak 
+include der_libs\tool_select.mak
 
 ifeq ($(USE_DEBUG),YES)
 CFLAGS=-Wall -ggdb -O
