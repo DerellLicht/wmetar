@@ -52,7 +52,7 @@ int antoi(char * string, int len)
 {
     int i, retval;
  
-    char *tmpstr = (char *) malloc((len+1) * sizeof(char));
+    char *tmpstr = (char *) malloc((len+1) * sizeof(char)); // NOLINT(cppcoreguidelines-no-malloc)
  
     // if (tmpstr == NULL) return (-2147483648);
     if (tmpstr == NULL) return (-1);
@@ -64,7 +64,7 @@ int antoi(char * string, int len)
  
     retval = atoi(tmpstr);
  
-    free(tmpstr);
+    free(tmpstr); // NOLINT(cppcoreguidelines-no-malloc)
  
     return(retval);
  

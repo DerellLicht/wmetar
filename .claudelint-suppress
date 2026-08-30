@@ -1,0 +1,14 @@
+# ClaudeLint suppression file
+# One entry per line: path/relative/to/project:line
+# '#' starts a comment (full-line or trailing).
+#
+# Example (uncomment and edit to suppress a real finding):
+# der_libs/common.h:101  # SomeStruct::some_field
+D:\SourceCode\Git\wmetar\metar_structs.h:134  # unused field 'decoded_METAR::SKY_2ndSite_LOC'
+D:\SourceCode\Git\wmetar\metar_structs.h:135  # unused field 'decoded_METAR::SKY_2ndSite'
+D:\SourceCode\Git\wmetar\metar_structs.h:156  # unused field 'decoded_METAR::charPrevailVsby'
+D:\SourceCode\Git\wmetar\metar_structs.h:157  # unused field 'decoded_METAR::charVertVsby'
+D:\SourceCode\Git\wmetar\metar_structs.h:165  # unused field 'decoded_METAR::ACFTMSHP'
+D:\SourceCode\Git\wmetar\metar_structs.h:167  # unused field 'decoded_METAR::FIRST'
+D:\SourceCode\Git\wmetar\metar_structs.h:226  # unused field 'decoded_METAR::SKY_2ndSite_Meters'
+

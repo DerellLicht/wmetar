@@ -1,0 +1,362 @@
+[
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/common_funcs.cpp",
+   "-o",
+   "der_libs/common_funcs.o"
+  ],
+  "file": "der_libs/common_funcs.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/common_win.cpp",
+   "-o",
+   "der_libs/common_win.o"
+  ],
+  "file": "der_libs/common_win.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/statbar.cpp",
+   "-o",
+   "der_libs/statbar.o"
+  ],
+  "file": "der_libs/statbar.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/winmsgs.cpp",
+   "-o",
+   "der_libs/winmsgs.o"
+  ],
+  "file": "der_libs/winmsgs.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/wthread.cpp",
+   "-o",
+   "der_libs/wthread.o"
+  ],
+  "file": "der_libs/wthread.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/cterminal.cpp",
+   "-o",
+   "der_libs/cterminal.o"
+  ],
+  "file": "der_libs/cterminal.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "der_libs/vlistview.cpp",
+   "-o",
+   "der_libs/vlistview.o"
+  ],
+  "file": "der_libs/vlistview.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "wmetar.cpp",
+   "-o",
+   "wmetar.o"
+  ],
+  "file": "wmetar.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "dcdmetar.cpp",
+   "-o",
+   "dcdmetar.o"
+  ],
+  "file": "dcdmetar.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "antoi.cpp",
+   "-o",
+   "antoi.o"
+  ],
+  "file": "antoi.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "charcmp.cpp",
+   "-o",
+   "charcmp.o"
+  ],
+  "file": "charcmp.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "dcdmtrmk.cpp",
+   "-o",
+   "dcdmtrmk.o"
+  ],
+  "file": "dcdmtrmk.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "fracpart.cpp",
+   "-o",
+   "fracpart.o"
+  ],
+  "file": "fracpart.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "prtdmetr.cpp",
+   "-o",
+   "prtdmetr.o"
+  ],
+  "file": "prtdmetr.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "stspack2.cpp",
+   "-o",
+   "stspack2.o"
+  ],
+  "file": "stspack2.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "stspack3.cpp",
+   "-o",
+   "stspack3.o"
+  ],
+  "file": "stspack3.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "station_name.cpp",
+   "-o",
+   "station_name.o"
+  ],
+  "file": "station_name.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\wmetar",
+  "arguments": [
+   "d:/llvm/bin/i686-w64-mingw32-clang++",
+   "-Wall",
+   "-O3",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-Wno-stringop-truncation",
+   "-Wno-stringop-overflow",
+   "-Wno-unused-but-set-variable",
+   "-Wno-c++11-narrowing",
+   "-Ider_libs",
+   "-c",
+   "sendbfr.cpp",
+   "-o",
+   "sendbfr.o"
+  ],
+  "file": "sendbfr.cpp"
+ }
+]

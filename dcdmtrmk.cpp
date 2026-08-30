@@ -17,6 +17,9 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+// NOLINTBEGIN(clang-analyzer-deadcode.DeadStores)
+// NOLINTBEGIN(cppcoreguidelines-no-malloc)
+
 // #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -2435,7 +2438,7 @@ syslog("isRecentWX:  JUST inside while-loop, temp = %s\n",temp);
       }
  
    }
-   return FALSE;
+   return FALSE;  // NOLINT(clang-analyzer-unix.Malloc)
 }
  
  
@@ -4267,7 +4270,7 @@ static MDSP_BOOL isT24MaxMinTemp( char *string, Decoded_METAR *Mptr,
    else if( (*string == '4' && (*(string+1) == '0' ||
                                 *(string+1) == '1' ||
                                 *(string+1) == '/')     &&
-             (nisdigit((string+2),3) || strncmp(string+2,"///",3)))
+             (nisdigit((string+2),3) || strncmp(string+2,"///",3))) // NOLINT(bugprone-suspicious-string-compare)
                               &&
              ((*(string+5) == '0' || *(string+5) == '1' ||
               *(string+5) == '/') &&
@@ -5238,4 +5241,6 @@ void DcdMTRmk( char **token, Decoded_METAR *Mptr )
  
    return;
 }
+// NOLINTEND(cppcoreguidelines-no-malloc)
+// NOLINTEND(clang-analyzer-deadcode.DeadStores)
 

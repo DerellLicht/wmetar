@@ -17,6 +17,8 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+// NOLINTBEGIN(clang-analyzer-deadcode.DeadStores)
+// NOLINTBEGIN(cppcoreguidelines-no-malloc)
 #include <windows.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -581,7 +583,7 @@ static MDSP_BOOL isPartObscur( char **string, Decoded_METAR *Mptr,
       if( *string == NULL )
          return TRUE;
  
-      if( strcmp( (*string+3), "///") ) {
+      if( strcmp( (*string+3), "///") ) { // NOLINT(bugprone-suspicious-string-compare)
           if( strcmp( *string, "FEW000" ) == 0 ||
               strcmp( *string, "SCT000" ) == 0 ||
               strcmp( *string, "BKN000" ) == 0    ) {
@@ -1836,7 +1838,7 @@ static MDSP_BOOL isPresentWX( char *token, Decoded_METAR *Mptr,
          {
             ptr = strstr(temp_token, WxSymbols[i]);
             if (ptr == NULL) {
-               return FALSE;
+               return FALSE;  // NOLINT(clang-analyzer-unix.Malloc)
             }
             temp_token = ptr + strlen(WxSymbols[i]);
          }
@@ -2449,7 +2451,7 @@ if( strcmp(token[0],"OPKC") == 0 || strcmp(token[0],"TAPA") == 0 ) {
                MetarGroup = NIL1;
             }
             else {
-               syslog("DcdMETAR: bad token[%d] = %s\n",NDEX,token[NDEX]);
+               syslog("DcdMETAR: bad token[%d] = %s\n",NDEX,token[NDEX]);  // NOLINT(clang-analyzer-unix.Malloc)
                freeTokens( token );
                return 12;
             }
@@ -2652,4 +2654,6 @@ int dcdNetMETAR (char *string, Decoded_METAR *Mptr)
    free(string_cpy);
    return result;
 }
+// NOLINTEND(cppcoreguidelines-no-malloc)
+// NOLINTEND(clang-analyzer-deadcode.DeadStores)
 

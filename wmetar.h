@@ -4,6 +4,7 @@
 
 #define FALSE  0
 #define TRUE   1
+// NOLINTNEXTLINE(clang-diagnostic-macro-redefined)
 #define MAXINT       INT_MAX           /* maximum integer */
 
 #define MAX_METAR_LEN   2048

@@ -13,6 +13,8 @@ CFLAGS += -Weffc++
 CFLAGS += -Wno-write-strings
 CFLAGS += -Wno-stringop-truncation
 CFLAGS += -Wno-stringop-overflow
+CFLAGS += -Wno-unused-but-set-variable
+CFLAGS += -Wno-c++11-narrowing
 
 LiFLAGS += -Ider_libs
 CFLAGS += -Ider_libs
@@ -59,14 +61,21 @@ dist:
 	rm -f wmetar.zip
 	zip wmetar.zip wmetar.exe readme.txt stations.txt metar_samples.txt
 
-lint:
-	cmd /C "c:\lint9\lint-nt +v -width(160,4) -ic:\lint9 -ider_libs mingw.lnt -os(_lint.tmp) lintdefs.cpp $(CSRC)"
+clint:
+	cmd /C "python ..\ClaudeLint.py --exclude der_libs --strip-arg=-Wno-stringop-* "
+	
+cppc:
+	cmd /C "cppcheck --project=compile_commands.json --std=c++14 --suppressions-list=./.suppress.cppcheck"
+
+check:
+	cmd /C "d:\llvm\bin\clang-tidy.exe $(CSRC)"
 
 #*******************************************************************
 #  component build rules
 #*******************************************************************
 $(BIN): $(OBJS)
-	g++ $(LFLAGS) $(OBJS) -o $(BIN) $(LIBS)
+	$(TOOLS)/$(GNAME) $(OBJS) $(LFLAGS) -o $(BIN) $(LIBS) 
+#	g++ $(LFLAGS) $(OBJS) -o $(BIN) $(LIBS)
 #	\\InnoSetup5\iscc /Q wmetar.iss
 
 rc.o: wmetar.rc
