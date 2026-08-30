@@ -1,14 +1,9 @@
 //**********************************************************************
-//  Copyright (c) 2009-2023  Daniel D Miller
+//  Copyright (c) 2009-2026  Daniel D Miller
 //  wmetar.exe - A Win32 program for decoding METAR weather messages
 //  
 //  Written by:   Daniel D. Miller
 //**********************************************************************
-//  version    changes
-//  =======    ======================================
-//    1.00     Initial release
-//    1.01     Add ability to resize the dialog
-//****************************************************************************
 
 static char const * const VerNum = "V1.01" ;
 static char szClassName[] = "WMetar" ;

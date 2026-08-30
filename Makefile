@@ -1,4 +1,9 @@
 USE_DEBUG = NO
+USE_64BIT = NO
+USE_UNICODE = NO
+USE_CLANG = NO
+# sadly, cygwin mingw does not support gdiplus...
+USE_CYGWIN = NO
 
 include der_libs\tool_select.mak
 
@@ -6,7 +11,7 @@ ifeq ($(USE_DEBUG),YES)
 CFLAGS=-Wall -ggdb -O
 LFLAGS=-mwindows
 else
-CFLAGS=-Wall -O3
+CFLAGS=-Wall -O3 -Weffc++ -c 
 LFLAGS=-mwindows -s
 endif
 CFLAGS += -Weffc++
@@ -35,16 +40,21 @@ prtdmetr.cpp stspack2.cpp stspack3.cpp station_name.cpp sendbfr.cpp
 
 OBJS = $(CSRC:.cpp=.o) rc.o
 
-BIN=wmetar.exe
+BASE:=wmetar
+BIN=$(BASE).exe
 
 LIBS=-lgdi32 -lcomctl32 -lcomdlg32
 
-%.o: %.cpp
-	$(TOOLS)\g++ $(CFLAGS) -c $< -o $@
+# Automatically parse the latest version block
+VERSION := $(shell grep -oE '\[[0-9]+\.[0-9]+\]' CHANGELOG.md | head -n 1 | tr -d '[]')
+DIST_ZIP := $(BASE)V$(VERSION).zip
 
 #*******************************************************************
 #  top-level build rules
 #*******************************************************************
+%.o: %.cpp
+	$(TOOLS)\$(GNAME) $(CFLAGS) -c $< -o $@
+
 all: $(BIN)
 
 clean:
@@ -75,11 +85,9 @@ check:
 #*******************************************************************
 $(BIN): $(OBJS)
 	$(TOOLS)/$(GNAME) $(OBJS) $(LFLAGS) -o $(BIN) $(LIBS) 
-#	g++ $(LFLAGS) $(OBJS) -o $(BIN) $(LIBS)
-#	\\InnoSetup5\iscc /Q wmetar.iss
 
 rc.o: wmetar.rc
-	windres $(RFLAGS) -O COFF $< -o $@
+	$(TOOLS)\$(WRNAME) $< -O COFF -o $@
 
 # DO NOT DELETE
 
