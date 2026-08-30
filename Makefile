@@ -63,13 +63,17 @@ clean:
 depend:
 	makedepend $(CSRC)
 
-source:
-	zip -D wmetar.src.zip *
-	zip -r wmetar.src.zip ../der_libs/*
-    
+# Your new automated release workflow
+release:
+	cmd /C "@echo Preparing GitHub release for v$(VERSION)..."
+	sed -n '/## \['$(VERSION)'\]/,/## \[/p' CHANGELOG.md | sed '$$d' > temp_notes.md
+	gh release create v$(VERSION) ./$(DIST_ZIP) ./CHANGELOG.md --notes-file temp_notes.md
+	rm temp_notes.md
+	cmd /C "@echo Release v$(VERSION) successfully uploaded to GitHub!"
+	
 dist:
-	rm -f wmetar.zip
-	zip wmetar.zip wmetar.exe readme.txt stations.txt metar_samples.txt
+	rm -f .zip
+	zip $(DIST_ZIP) $(BIN) readme.txt stations.txt metar_samples.txt CHANGELOG.md
 
 clint:
 	cmd /C "python ..\ClaudeLint.py --exclude der_libs --strip-arg=-Wno-stringop-* "
