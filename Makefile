@@ -68,7 +68,7 @@ depend:
 
 dist:
 	rm -f .zip
-	zip $(DIST_ZIP) $(BIN) readme.txt stations.txt metar_samples.txt CHANGELOG.md
+	zip $(DIST_ZIP) $(BIN) readme.md stations.txt metar_samples.txt LICENSE.txt CHANGELOG.md
 
 # Your new automated release workflow
 release: dist
