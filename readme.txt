@@ -2,31 +2,16 @@ METAR Decoder utility for Windows
 dan7miller@comcast.net
 Last update: 02/25/23
 
-My modified package has the same licensing rules as the original package, 
-which is listed thus:
+This project is licensed under _Creative Commons CC0 1.0 Universal_   
 
-   Of benefit to users, Open Source software is licensed so you can download 
-   and use the software free-of-charge. The source code for this software is 
-   made available free-of-charge, you (or a programmer you hire) can make 
-   changes to this software to better meet your needs, and you can release 
-   your changed code back to the community passing the benefit on to other 
-   users. 
+See the [License](LICENSE.txt) file for detailed information about this license
+<hr>
 
-The original source code for this project was obtained from:
-https://sourceforge.net/projects/mdsplib/
-on August 14, 2013.
-
-###  TRUTH IN ADVERTISING MESSAGE  ###
-Make no mistake, the *heavy lifting* of this program was done by:
-chopperd - http://sourceforge.net/users/chopperd
-who developed the "METAR Decoder Software Package Library"
-that I wrapped the WinAPI interface around.  Much of that library I *still*
-don't actually understand, but it works beautifully!!!  
+See [Changelog](CHANGELOG.md) for the full revision history.  
 
 //************************************************************
-Sample output (via klvk.bat file, included in install directory)
+Sample output 
 
-*****************************************************
 INPUT METAR REPORT:
    METAR KLVK 141853Z 30009KT 10SM CLR 28/09 A2996 RMK AO2 SLP140 T02830094
 
@@ -48,6 +33,17 @@ AUTO INDICATOR      : AO2
 SLP (hPa)           : 1014.0
 TMP2TENTHS (degsF)  : 82.9
 DPT2TENTHS (degsF)  : 48.9
+
+//***********************************************************************
+The original source code for this project was obtained from:
+https://sourceforge.net/projects/mdsplib/
+on August 14, 2013.
+
+the *heavy lifting* of this program was done by:
+chopperd - http://sourceforge.net/users/chopperd
+who developed the "METAR Decoder Software Package Library"
+that I wrapped the WinAPI interface around.  Much of that library I *still*
+don't actually understand, but it works beautifully!!!  
 
 //***********************************************************************
 Build/modification notes from Derell Licht:
