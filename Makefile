@@ -67,7 +67,7 @@ depend:
 	makedepend $(CSRC)
 
 dist:
-	rm -f .zip
+	rm -f *.zip
 	zip $(DIST_ZIP) $(BIN) readme.md stations.txt metar_samples.txt LICENSE.txt CHANGELOG.md
 
 # Your new automated release workflow
