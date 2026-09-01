@@ -5,7 +5,7 @@
 //  Written by:   Daniel D. Miller
 //**********************************************************************
 
-static char const * const VerNum = "V1.01" ;
+static char const * const VerNum = "V1.02" ;
 static char szClassName[] = "WMetar" ;
 
 #include <windows.h>
